@@ -1,0 +1,45 @@
+# 多的一方 ，带外键的一方 - 商品（从表）  一的一方 （主表）/ 父表
+
+# 主表存放从表的主键 ，称为 外键
+
+# 外键的约束
+
+#1 、CASCADE - 级联删除 ，删除主表的主键、从表中存在此外键的条目也会被同时删除  -- 不推荐
+#2、RESTRICT与NO ACTION - 若主表的主键在从表中存在引用时，则不允许操作删除主表数据  -- 推荐
+#3、SET NULL - 当主表的记录被删除时，从表引用的记录值会被置NULL -- 有特殊场景下使用
+
+#交叉查询 -- 不推荐使用
+
+select p.pid , p.pname , p.cid pcid , c.cid ccid , c.cname from product p, category c
+
+#内连接查询
+#隐式内连接 - 将一些关联的数据查询出来
+select p.pid , p.pname , p.cid , c.cname from product p , category c where p.cid = c.cid
+
+#显示内连接 -A  inner join  B  on 条件
+select p.pid , p.pname , p.cid , c.cname from product p INNER JOIN category c ON p.cid = c.cid
+
+#外连接  - 外连接在实际应用中可能左连接 就完全够用。
+#左外连接 / 左连接  -- 会查询出左侧表的全部数据与 左侧表与右侧表满足条件的数据  OUTER -- 可以省略不写
+select p.pid , p.pname , p.cid , c.cname from product p LEFT  JOIN category c ON p.cid = c.cid
+
+#右外连接 / 右连接
+select p.pid , p.pname , c.cid , c.cname from product p RIGHT OUTER  JOIN category c ON p.cid = c.cid
+
+
+#GROUP BY : 分组函数
+#ORDER BY ：排序 默认是正序 ASC   修改为倒序 DESC 若想支持根据多个列进行排序的时候需要使用 , 号分隔
+
+select SUM(p.price) ,  c.cid , c.cname from product p RIGHT JOIN category c ON p.cid = c.cid GROUP BY c.cname 
+ORDER BY SUM(p.price) DESC , c.cid DESC
+
+#查询某个分类下面的商品数量
+
+select count(p.pname),c.cid ,  c.cname from category c LEFT JOIN product p ON c.cid = p.cid GROUP BY c.cname
+
+
+
+
+
+
+
