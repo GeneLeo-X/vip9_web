@@ -10,3 +10,5 @@ Example2 - SQL攻击演示
 pool - 连接池相关讲解
 
 Example3 - 连接池测试
+
+Example4 - DBUtils工具类的应用（优化了JDBC操作数据库的）

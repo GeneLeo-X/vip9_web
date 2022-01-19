@@ -2,6 +2,7 @@ package day02.pool;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -56,5 +57,13 @@ public class C3p0Pool {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 对外提供C3P0连接池的数据源
+     * @return
+     */
+    public static DataSource getDataSource(){
+        return dataSource;
     }
 }

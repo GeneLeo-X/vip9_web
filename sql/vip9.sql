@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2022-01-19 11:35:20
+Date: 2022-01-19 15:59:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,24 +33,6 @@ INSERT INTO `category` VALUES ('5', '衣服类');
 INSERT INTO `category` VALUES ('6', '化妆品');
 
 -- ----------------------------
--- Table structure for order
--- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
-  `oid` bigint(20) NOT NULL auto_increment,
-  `ono` varchar(255) default NULL COMMENT '订单号',
-  `create_time` datetime default NULL,
-  `total_price` decimal(10,2) default NULL,
-  PRIMARY KEY  (`oid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of order
--- ----------------------------
-INSERT INTO `order` VALUES ('1', '32663726732', '2022-01-19 10:55:23', '299.00');
-INSERT INTO `order` VALUES ('2', '8787843', '2022-01-18 10:55:39', '199.00');
-
--- ----------------------------
 -- Table structure for order_product
 -- ----------------------------
 DROP TABLE IF EXISTS `order_product`;
@@ -59,7 +41,7 @@ CREATE TABLE `order_product` (
   `pid` bigint(20) NOT NULL,
   KEY `pid` (`pid`),
   KEY `oid` (`oid`),
-  CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `order` (`oid`),
+  CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `t_order` (`oid`),
   CONSTRAINT `pid` FOREIGN KEY (`pid`) REFERENCES `product` (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -78,18 +60,21 @@ CREATE TABLE `product` (
   `pname` varchar(255) default NULL,
   `cid` int(11) default NULL,
   `price` decimal(10,2) default NULL,
+  `create_time` datetime default NULL,
   PRIMARY KEY  (`pid`),
   KEY `cid` (`cid`),
   CONSTRAINT `cid` FOREIGN KEY (`cid`) REFERENCES `category` (`cid`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', '联想电脑', '1', '2999.00');
-INSERT INTO `product` VALUES ('2', 'VIVO手机', '1', '3999.00');
-INSERT INTO `product` VALUES ('3', '洗发水', '6', '100.00');
-INSERT INTO `product` VALUES ('4', '鞋', null, '299.00');
+INSERT INTO `product` VALUES ('1', '联想电脑', '1', '2999.00', '2022-01-19 14:25:43');
+INSERT INTO `product` VALUES ('2', 'VIVO手机', '1', '3999.00', '2022-01-19 14:25:45');
+INSERT INTO `product` VALUES ('3', '洗发水', '6', '100.00', '2022-01-19 14:25:48');
+INSERT INTO `product` VALUES ('5', '鞋子', '5', '288.00', null);
+INSERT INTO `product` VALUES ('6', '鞋子', '5', '288.00', null);
+INSERT INTO `product` VALUES ('7', '鞋子', '5', '288.00', null);
 
 -- ----------------------------
 -- Table structure for student
@@ -108,6 +93,24 @@ CREATE TABLE `student` (
 -- ----------------------------
 INSERT INTO `student` VALUES ('4', '37287832', '多岁的', '11');
 INSERT INTO `student` VALUES ('6', '2022008', '张三', '22');
+
+-- ----------------------------
+-- Table structure for t_order
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order` (
+  `oid` bigint(20) NOT NULL auto_increment,
+  `ono` varchar(255) default NULL COMMENT '订单号',
+  `create_time` datetime default NULL,
+  `total_price` decimal(10,2) default NULL,
+  PRIMARY KEY  (`oid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+INSERT INTO `t_order` VALUES ('1', '32663726732', '2022-01-19 10:55:23', '299.00');
+INSERT INTO `t_order` VALUES ('2', '8787843', '2022-01-18 10:55:39', '199.00');
 
 -- ----------------------------
 -- Table structure for user

@@ -2,6 +2,7 @@ package day02;
 
 import day02.bean.Product;
 import day02.pool.C3p0Pool;
+import day02.pool.DbcpPool;
 import day02.pool.MyConnectionPool;
 
 import java.math.BigDecimal;
@@ -30,6 +31,10 @@ public class Example3 {
         product.setPname("鞋子");
         product.setCid(5L);
         System.out.println(addProduct(product));
+
+        System.out.println("------------根据ID获取商品信息------------");
+
+        System.out.println(getProductByPid(1L));
     }
 
     public static List<Product> getProductList(){
@@ -91,5 +96,27 @@ public class Example3 {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public static Product getProductByPid(Long pid){
+        Connection conn = DbcpPool.getConnection();
+        Product product = null;
+        try {
+            PreparedStatement pstmt = conn.prepareStatement("select p.pid , p.pname , p.price , p.cid " +
+                    ",p.create_time as createTime from product p where pid = ?");
+
+            pstmt.setLong(1 , pid);
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                product = new Product();
+                product.setPid(rs.getLong("pid"));
+                product.setPname(rs.getString("pname"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 }
