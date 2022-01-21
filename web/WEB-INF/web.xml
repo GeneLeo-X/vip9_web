@@ -9,4 +9,18 @@
     </welcome-file-list>
 
 
+    <servlet>
+        <!--servlet-name : 起的名称是为了 servlet-mapping里面应用的-->
+        <servlet-name>quick</servlet-name>
+        <!-- servlet-class 配置的类 一定要是Servlet类-->
+        <servlet-class>day03.QuickServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>quick</servlet-name>
+        <!--路由/路径 -->
+        <url-pattern>/quickServlet</url-pattern>
+
+        <url-pattern>/quickServlet12</url-pattern>
+    </servlet-mapping>
 </web-app>
