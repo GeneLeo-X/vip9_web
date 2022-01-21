@@ -8,19 +8,44 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <param-name>test-grobal-param</param-name>
+        <param-value>test-grobal-val</param-value>
+    </context-param>
+
 
     <servlet>
         <!--servlet-name : 起的名称是为了 servlet-mapping里面应用的-->
         <servlet-name>quick</servlet-name>
         <!-- servlet-class 配置的类 一定要是Servlet类-->
         <servlet-class>day03.QuickServlet</servlet-class>
+
+        <init-param>
+            <param-name>test-param</param-name>
+            <param-value>test - val</param-value>
+        </init-param>
+        <!--可以让servlet启动的时机更早的，tomcat启动的时候就会初始化了。参数：正整数，越小优先级越高，不建议使用1 -->
+        <load-on-startup>5</load-on-startup>
+
+
     </servlet>
 
     <servlet-mapping>
         <servlet-name>quick</servlet-name>
         <!--路由/路径 -->
         <url-pattern>/quickServlet</url-pattern>
-
+        <!--完全匹配路由的配置方式-->
         <url-pattern>/quickServlet12</url-pattern>
+        <!--虚拟目录匹配-->
+        <url-pattern>/test/path/*</url-pattern>
+
+        <!--structs2配置 *.action  SpringMVC *.do   扩展名配置-->
+        <url-pattern>*.do</url-pattern>
+
+        <!--需要注意虚拟目录配置与 扩展名配置 不能混合使用-->
+        <!--java.lang.IllegalArgumentException -->
+        <!--<url-pattern>/test/*.do</url-pattern>-->
+        <!--缺省的配置方式，其它的配置都找寻不到的情况下，默认执行缺省  。不要进行配置 -->
+        <!--<url-pattern>/</url-pattern>-->
     </servlet-mapping>
 </web-app>

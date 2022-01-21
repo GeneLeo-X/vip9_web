@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>JSP的标题</title>
   </head>
   <body>
-  $END$
+  JSP内容
   </body>
 </html>

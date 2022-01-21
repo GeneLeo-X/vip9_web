@@ -1,5 +1,6 @@
 package day03;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import java.io.IOException;
 @WebServlet("/quickHttp")
 public class QuickHttpServlet extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("执行了doGet方法");//底层其实还是使用的Service方法
@@ -30,5 +32,9 @@ public class QuickHttpServlet extends HttpServlet {
         System.out.println("执行了doPost方法");//底层其实还是使用的Service方法
 
         System.out.println("统一业务代码出口...");
+
+        ServletContext servletContext = this.getServletContext();
+
+        servletContext.setAttribute("test-store","我们测试一下储存的值");
     }
 }
