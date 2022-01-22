@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+</head>
+<body>
+    <!--表单，可以一次性的提交多个信息，到服务端
+        action : 配置表单提交路由的
+        method : 请求方式，默认是get请求
+    -->
+    <form action="/register" method="post">
+        <!--接收用户输入信息-->
+        用户名: &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" placeholder="请输入用户名"/><br/>
+        <br/>
+        真实姓名: &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name" placeholder="请输入真实姓名"/><br/>
+        <br/>
+        密码: &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="请输入密码"/><br/>
+        <br/>
+        确认密码: &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="re_password" placeholder="请输入确认密码"/><br/>
+        <br/>
+        性别: &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="男"/>男<input type="radio" name="sex" value="女"/>女<br/>
+        <br/>
+        爱好: &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="hobby" value="篮球"/>
+        篮球<input type="checkbox" name="hobby" value="足球"/>足球
+        <input type="checkbox" name="hobby" value="乒乓球"/>乒乓球<br/>
+        <br/>
+        电话号: &nbsp;&nbsp;&nbsp;&nbsp;<input type="tel" name="phone" placeholder="请输入手机号"/><br/>
+        <br/>
+        <input type="submit" value="提交"/> <input type="reset" value="重置"/>
+
+
+    </form>
+</body>
+</html>
