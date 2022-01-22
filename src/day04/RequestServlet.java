@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Map;
@@ -40,6 +41,8 @@ public class RequestServlet extends HttpServlet {
         //可以获取到 ? 后面的所有参数，但多个参数的时候需要使用 & 进行参数分隔
         String queryString = req.getQueryString();// - 简单了解即可
         System.out.println("queryString = " + queryString);
+        //不关心本来的字符集，直接转换编码格式
+        queryString = URLDecoder.decode(queryString , "utf-8");
         String[] split = queryString.split("&");
         System.out.println(Arrays.toString(split));
 
