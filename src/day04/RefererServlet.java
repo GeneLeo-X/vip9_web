@@ -24,6 +24,8 @@ public class RefererServlet extends HttpServlet {
         }
 
         System.out.println("测试取request域的值 ： " + req.getAttribute("name"));
+
+
     }
 
     @Override

@@ -49,6 +49,7 @@ public class RegisterServlet extends HttpServlet {
 
         if(rows > 0){//注册成功
             System.out.println("注册成功，跳转登录~~");
+            resp.sendRedirect(req.getContextPath() + "/login.html");
         }
     }
 
