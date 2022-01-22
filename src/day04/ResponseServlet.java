@@ -32,7 +32,7 @@ public class ResponseServlet extends HttpServlet {
         /*resp.setStatus(302);//重定向的状态码
         resp.setHeader("Location" , "/quickServlet");*///url : 重定向跳转的地址
         //封装好的重定向方法
-        //resp.sendRedirect("/test.html");//应用上下文路径，Application Context - 若为/就不需要写。但是上线或者新IDEA版本自带路径的话就需要手动添加
+        resp.sendRedirect("/test.html");//应用上下文路径，Application Context - 若为/就不需要写。但是上线或者新IDEA版本自带路径的话就需要手动添加
         System.out.println("------------向响应体中输出内容----------");
 
         //resp.setCharacterEncoding("utf-8");//简单了解 --不使用

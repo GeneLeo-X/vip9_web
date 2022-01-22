@@ -22,6 +22,8 @@ public class RefererServlet extends HttpServlet {
         }else{
             System.out.println("别的网站过来的，不允许访问...");
         }
+
+        System.out.println("测试取request域的值 ： " + req.getAttribute("name"));
     }
 
     @Override
