@@ -48,4 +48,9 @@
         <!--缺省的配置方式，其它的配置都找寻不到的情况下，默认执行缺省  。不要进行配置 -->
         <!--<url-pattern>/</url-pattern>-->
     </servlet-mapping>
+
+    <session-config>
+        <!--默认是min-->
+        <session-timeout>60</session-timeout>
+    </session-config>
 </web-app>
