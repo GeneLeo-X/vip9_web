@@ -18,6 +18,9 @@ public class User implements Serializable{
 
     private String phone;
 
+    private Car car;
+
+
 
     public Integer getUid() {
         return uid;
@@ -73,6 +76,14 @@ public class User implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override
