@@ -10,6 +10,7 @@
 <head>
     <title>异步的学习与掌握</title>
 </head>
+<script src="../js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
     function testJSAjax() {
         var xmlhttp;//创建Ajax引擎对象
@@ -52,6 +53,31 @@
         //发送请求
         xmlhttp.send("name=李四&age=33");
     }
+
+
+    function testJQAjaxGet(){
+        $.get("${pageContext.request.contextPath}/ajax", { "name": "John", "time": "2pm" },
+            function(data){//回调监听 - 只有成功才会监听到
+                alert("Data Loaded: " + data);
+            } , "text");//"text" : 响应回的数据格式
+    }
+    
+    function testJQAjaxFn() {
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/ajax",
+            data: "name=tom&location=Boston",
+            success: function(msg){
+                //alert(msg)
+                alert( "Data Saved: " + msg.pname);
+            },
+            dataType:"json" ,
+            error: function (data) {
+                alert("服务端响应出问题的时候弹出")
+            }
+
+        });
+    }
 </script>
 
 <body>
@@ -60,5 +86,9 @@
 <input value="JS使用Ajax同步" type="button" onclick="testJSAjaxPOST()"/><br/>
 
 <input value="test测试" type="button" onclick="alert('test点击')"/><br/>
+
+<input value="JQ使用Ajax异步GET" type="button" onclick="testJQAjaxGet()"/><br/>
+
+<input value="JQ使用Ajax异步ajax方法" type="button" onclick="testJQAjaxFn()"/><br/>
 </body>
 </html>
